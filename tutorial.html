@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wikipedia Editing Tutorial</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://d3js.org/d3.v7.min.js"></script> <!-- Include D3.js library -->
+<script type="text/javascript" src="script.js">
+</script>
+</head>
+<body bgcolor="lightgreen">
+<div class="container">
+<img src="wikimedialogo.jpeg" alt="wikipedia logo" width="100" height="100">
+  <h1>Welcome to Wikipedia  Easy Editing</h1>
+<table align="right" bgcolor="pink">
+<th>most frequent questions by new editors</th>
+<tr>
+<td>
+   <a href="ans1.html"  target="_blank">How do I edit a page?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans2.html" target="_blank">How do I insert ?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans3.html" target="_blank">How do I rename a page?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans4.html" target="_blank">How do I communicate with other editors on Wikipedia?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans5.html" target="_blank"> How can I add pictures to pages?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans6.html" target="_blank"> How can I delete uploaded items?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans7.html" target="_blank">Is there any way to see how many people have viewed a particular page?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans8.html" target="_blank">Is there a way to edit without having to deal with wikicode?</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans9.html" target="_blank">Are there any tools or templates that can help me with editing? </a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="ans10.html" target="_blank">How can I track the changes I've made to articles?</a>
+</td>
+</tr>
+<tr>
+<td><textarea id="others" rows="2" cols="40" placeholder="Other issues/queries"></textarea><br/>
+<button name="contact" >contact</button>
+</td>
+</tr>
+</table>
+  <p>Follow the steps below to learn how to edit Wikipedia articles:</p>
+  <div id="steps">
+    <div class="step" id="step1">
+      <h2>Step 1: Create an Account</h2>
+      <p>Register for a Wikipedia account to start editing.</p>
+      <button onclick="createAcct()" target="_blank">Next</button>
+    </div>
+    <div class="step" id="step2">
+      <h2>Step 2: Choose an Article</h2>
+      <p>Select an article you're interested in editing.</p>
+      Enter article name<input type="textfield" id="article"></input><br/>
+      <button onclick="openArticlePicker()">fetch results</button>
+      <button onclick="prevStep()">Back</button>
+    </div>
+    <div class="step" id="step3">
+      <h2>Step 3: Make Your Edit</h2>
+      <p>Edit the article by adding content, fixing errors, or adding citations.</p>
+      <textarea id="editTextArea" rows="3" cols="48" placeholder="Enter your edit here"></textarea>
+      <button onclick="previewEdit()">Preview</button>
+      <button onclick="prevStep()">Back</button>
+    </div>
+    <div class="step" id="step4">
+      <h2>Step 4: Preview and Publish</h2>
+      <p>Preview your changes and then publish them to the article.</p>
+      <div id="editPreview"></div>
+      <button onclick="publishEdit()">Publish</button>
+      <button onclick="prevStep()">Back</button>
+    </div>
+  </div>
+  <div id="progress">
+    <div id="progressBar"></div>
+  </div>
+</div>
+//
+<form action="/chat" method="post">
+        <input type="text" name="question" placeholder="Ask me anything...">
+        <button type="submit">Ask</button>
+    </form>
+    <div id="response"></div>
+
+    <script>
+        document.querySelector('form').onsubmit = async function(event) {
+            event.preventDefault();
+            const question = document.querySelector('input[name="question"]').value;
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: question=${encodeURIComponent(question)}
+            });
+            const data = await response.text();
+            document.getElementById('response').innerHTML = data;
+        };
+    </script>
+//
+
+
+     
+
+<script src="visuals.js"></script> <!-- Include script for visual aids -->
+</body>
+</html>
